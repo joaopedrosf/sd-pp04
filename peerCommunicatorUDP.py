@@ -65,6 +65,8 @@ class MsgHandler(threading.Thread):
 
         if (msg[2] == 'deposit'):
           self.balance = self.balance + msg[3]
+        elif (msg[2] == 'withdraw'):
+          self.balance = self.balance - msg[3]
         else:
           # Apply interest rate
           self.balance = self.balance + self.balance * msg[3]/100
@@ -153,6 +155,8 @@ while 1:
     opNum = random.randrange(0,NUM_OPS)
     if opNum == 0:
       opValue = random.randrange(depositRange[0],depositRange[1]+1)
+    elif opNum == 1:
+      opValue = random.randrange(withdrawRange[0], withdrawRange[1] + 1)
     else:
       opValue = random.randrange(interestRange[0],interestRange[1]+1)
 
